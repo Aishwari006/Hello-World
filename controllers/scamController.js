@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const ScamSession = require('../models/scamSession');
 const { generateScammerResponse } = require('../services/geminiService');
-const { validateMessageInput } = require('../utils/validators');
+const { validateMessageInput } = require('../utils/validator');
 
 const MAX_TURNS = 20;
 
