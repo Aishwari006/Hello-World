@@ -131,6 +131,11 @@ export function useBambiVoice(registry, onMatch, onNoMatch) {
         return;
       }
 
+      if (cleaned.includes("community") || cleaned.includes("siren") || cleaned.includes("community siren")) {
+        onMatch("community siren", registry["community siren"]);
+        return;
+      }
+
       if (cleaned.includes("red flag") || cleaned.includes("messages") || cleaned.includes("message") || cleaned.includes("email") || cleaned.includes("emails")) {
         onMatch("fake messages", registry["fake messages"]);
         return;

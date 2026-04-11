@@ -39,6 +39,11 @@ export const registry: Registry = {
     speech: "Opening Digilocker Guided Module",
   },
 
+  "community siren": {
+    route: "/community",
+    speech: "Opening Community Siren Page",
+  },  
+
   "fake messages": {
     route: "/red-flag-detector",
     speech: "Opening Spot Fake Messages and Emails Module",

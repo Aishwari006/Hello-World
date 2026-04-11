@@ -24,19 +24,20 @@ export default function Modules() {
         {/* Card 1 */}
         <ModuleCard
           to="/red-flag-detector/module1"
-          icon={AlertTriangle}
-          title="Identify Message Scams"
-          description="Learn how to detect suspicious SMS, WhatsApp, and fake alerts."
-          color="red"
+          icon={Mail}
+          title="Learn About Phishing Emails"
+          description="Understand fake emails, spoofed domains, and scam tricks."
+          color="blue"
+          
         />
 
         {/* Card 2 */}
         <ModuleCard
           to="/red-flag-detector/module2"
-          icon={Mail}
-          title="Learn About Phishing Emails"
-          description="Understand fake emails, spoofed domains, and scam tricks."
-          color="blue"
+          icon={AlertTriangle}
+          title="Identify Message Scams"
+          description="Learn how to detect suspicious SMS, WhatsApp, and fake alerts."
+          color="red"
         />
 
       </div>
