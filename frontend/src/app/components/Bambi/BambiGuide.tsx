@@ -31,7 +31,7 @@ export function BambiGuide({ registry }: BambiGuideProps): JSX.Element {
   const [bubbleVisible, setBubbleVisible] = useState<boolean>(true);
   const [isHopping, setIsHopping] = useState<boolean>(false);
   const [highlightedEl, setHighlightedEl] = useState<HTMLElement | null>(null);
-  const [isIntroMode, setIsIntroMode] = useState<boolean>(location.pathname === "/");
+  const [isIntroMode, setIsIntroMode] = useState<boolean>(location.pathname === "/startJourney");
   const introShownRef = useRef(false);
 
   const bubbleTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -39,7 +39,7 @@ export function BambiGuide({ registry }: BambiGuideProps): JSX.Element {
   // ─── Greeting bubble ────────────────────────────────────────────────────
 
   useEffect(() => {
-    if (location.pathname === "/") {
+    if (location.pathname === "/startJourney") {
       if (!introShownRef.current) {
         introShownRef.current = true;
         setIsIntroMode(true);
@@ -220,8 +220,9 @@ const bambiVariants = {
     <>
       {/* Bambi */}
       <motion.div
-      onAnimationComplete={() => {
-        if (isIntroMode) {
+      onAnimationComplete={(variant) => {
+        // ✅ Only reset if the 8-second "intro" animation is the one that finished!
+        if (variant === "intro") {
           setIsIntroMode(false);
         }
       }}

@@ -1,6 +1,9 @@
 import { createBrowserRouter } from "react-router";
 import { Home } from "./pages/Home";
 import { Main } from "./pages/Main";
+// ✅ Fixed your imports to cleanly separate these three pages
+import { BeforeLoginPage } from "./pages/LandingPage"; 
+import { LoginPage } from "./pages/Login"; 
 import { Dashboard } from "./pages/Dashboard";
 import  RedFlagDetector  from "./pages/Module1RedFlagDetector";
 import { AIScamSimulator } from "./pages/AIScamSimulator";
@@ -22,32 +25,43 @@ import { Screen7 } from "./pages/Module2RedFlagDetector/screens/Screen7";
 import { SandboxModule1 } from "./pages/SandboxModule1/SandboxModule1";
 import CommunitySiren from "./pages/CommunitySiren";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: Layout,
     children: [
-      { index: true, Component: Main },
+      // ✅ 1. Standard Landing Page (renders on "/")
+      { index: true, Component: BeforeLoginPage },
+      
+      // ✅ 2. Demo Before Login route
+      { path: "beforelogin", Component: BeforeLoginPage },
+
+      // ✅ 3. Login route
+      { path: "login", Component: LoginPage },
+
+      // ✅ 4. Where the user goes AFTER logging in
+      { path: "startJourney", Component: Main },
+      
       { path: "home", Component: Home },
       { path: "dashboard", Component: Dashboard },
-       { path: "sandbox/module2", Component: DigiLockerModule },
+      { path: "sandbox/module2", Component: DigiLockerModule },
       { path: "sandbox/upi", Component: RedFlagDetector },
       { path: "red-flag-detector", Component: Modules },
       { path: "ai-scam-simulator", Component: AIScamSimulator },
       { path: "deepfake-lab", Component: DeepfakeLab },
-         { path: "community", Component: CommunitySiren },
-{
-  path: "/sandbox/module1",
-  element: <SandboxModule1 />,
-},
- {
-  path: "/red-flag-detector/module1",element: <Module1RedFlagDetector />
-},
- {
-  path: "/red-flag-detector/module2/quiz",element: <Quiz />
-},
-      
+      { path: "community", Component: CommunitySiren },
+      {
+        path: "/sandbox/module1",
+        element: <SandboxModule1 />,
+      },
+      {
+        path: "/red-flag-detector/module1",
+        element: <Module1RedFlagDetector />
+      },
+      {
+        path: "/red-flag-detector/module2/quiz",
+        element: <Quiz />
+      },
       {
         path: "red-flag-detector/module2/",
         children: [

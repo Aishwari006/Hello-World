@@ -1,14 +1,22 @@
-import { Outlet, Link, useLocation } from "react-router";
+import { Outlet, Link, useLocation, useNavigate } from "react-router";
 import { Compass, Home, LayoutDashboard, Users } from "lucide-react";
 import { motion } from "motion/react";
 import { BambiGuide } from "../components/Bambi/BambiGuide";
 import { registry } from "../components/Bambi/bambiRegistry";
 import { Footer } from "./ui/Footer";
 import { LanguageToggle } from "./ui/LanguageToggle";
+import { logout, isAuthenticated } from "../utils/auth"; // ✅ Added auth imports
 
 export function Layout() {
   const location = useLocation();
+  const navigate = useNavigate(); // ✅ Added navigate
   const isHome = location.pathname === "/";
+
+  // ✅ Added handleLogout function
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -30,11 +38,25 @@ export function Layout() {
                 </span>
               </Link>
 
+              {/* ✅ Updated Navbar Section */}
               <div className="flex items-center gap-6">
                 <NavLink to="/home" icon={Home} label="Home" />
                 <NavLink to="/dashboard" icon={LayoutDashboard} label="Progress" />
-                 <NavLink to="/community" icon={Users} label="Community" />
+                <NavLink to="/community" icon={Users} label="Community" />
+                
                 <LanguageToggle />
+
+                {/* ✅ Added Logout Button */}
+                {isAuthenticated() && (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleLogout}
+                    className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
+                  >
+                    Logout
+                  </motion.button>
+                )}
               </div>
             </div>
           </nav>
