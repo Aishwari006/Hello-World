@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router";
 import { Home } from "./pages/Home";
 import { Main } from "./pages/Main";
 // ✅ Fixed your imports to cleanly separate these three pages
-import { BeforeLoginPage } from "./pages/LandingPage"; 
+import SafetyNetLanding from "./pages/LandingPage"
 import { LoginPage } from "./pages/Login"; 
 import { Dashboard } from "./pages/Dashboard";
 import  RedFlagDetector  from "./pages/Module1RedFlagDetector";
@@ -31,10 +31,10 @@ export const router = createBrowserRouter([
     Component: Layout,
     children: [
       // ✅ 1. Standard Landing Page (renders on "/")
-      { index: true, Component: BeforeLoginPage },
+      { index: true, Component: SafetyNetLanding },
       
       // ✅ 2. Demo Before Login route
-      { path: "beforelogin", Component: BeforeLoginPage },
+      { path: "beforelogin", Component: SafetyNetLanding },
 
       // ✅ 3. Login route
       { path: "login", Component: LoginPage },
